@@ -1,0 +1,29 @@
+# Criar arquivo app/requirements.txt
+
+# Dependências da Helpdesk API.
+# Criar o env: `py -m venv env`
+# Ativar o env: Windows `env\Scripts\activate` Unix: `source env/bin/activate`
+# Instale com: pip install -r requirements.txt
+# Versões fixadas (==) para que todos os alunos rodem exatamente o mesmo ambiente.
+
+# --- Web ---
+fastapi==0.141.1                 # framework web: rotas, validação, injeção de dependências e Swagger (/docs)
+uvicorn[standard]==0.52.4        # servidor ASGI; [standard] traz uvloop, httptools e watchfiles (--reload)
+
+# --- Banco de dados ---
+sqlalchemy==2.0.52               # ORM: models, sessão e consultas
+pymysql==1.2.0                   # driver MySQL puro Python usado pelo SQLAlchemy (mysql+pymysql://)
+cryptography==50.0.1             # exigido pelo PyMySQL para autenticar com caching_sha2_password (MySQL 8)
+alembic==1.19.2                  # migrations versionadas do schema
+
+# --- Validação e configuração ---
+pydantic==2.13.5                 # schemas de entrada/saída (já vem com o FastAPI; versão fixada de propósito)
+pydantic-settings==2.15.0        # classe Settings lendo variáveis de ambiente e o .env
+email-validator==2.3.0           # necessário para o tipo EmailStr nos schemas
+
+# --- Requisições com formulário e arquivos ---
+python-multipart==0.0.32         # form OAuth2 do /auth/token e upload multipart de anexos
+
+# --- Autenticação ---
+pyjwt==2.13.0                    # gerar e validar o JWT (import jwt)
+bcrypt==5.0.0                    # hash de senha
