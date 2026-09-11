@@ -12,7 +12,7 @@ class Categoria(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     nome: Mapped[str] = mapped_column(String(60), unique=True, nullable=False)
     descricao: Mapped[str] = mapped_column(String(255), nullable=True)
-    ativo: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    ativa: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     criado_em: Mapped[datetime] = mapped_column(
         DateTime, default=agora, nullable=False,
     )

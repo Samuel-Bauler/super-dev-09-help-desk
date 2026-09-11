@@ -18,3 +18,10 @@ SessionLocal = sessionmaker(
 # Base é a classe mãe de todos os models SQLAlchemy
 class Base(DeclarativeBase):
     pass
+
+# py -c "import app.models as m; print(sorted(m.Base.metadata.tables))"
+
+# Criar migration
+# alembic revision --autogenerate -m "<mensagem>"
+# Aplicar as migrations (criar tabela, modificar tabelas, apagar tabelas)
+# alembic upgrade head
