@@ -15,7 +15,6 @@ class Usuario(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     nome: Mapped[str] = mapped_column(String(120), nullable=False)
     email: Mapped[str] = mapped_column(String(160), nullable=False, unique=True, index=True)
-    telefone: Mapped[str] = mapped_column(String(60), nullable=False)
     senha_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     papel: Mapped[Papel] = mapped_column(
         Enum(Papel, native_enum=False, length=20), nullable=False,
