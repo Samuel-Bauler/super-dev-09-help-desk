@@ -11,3 +11,10 @@ class UsuarioRepository(RepositorioBase[Usuario]):
 
     def consultar_por_email(self, email: str) -> Usuario | None:
         return self.db.scalar(select(Usuario).where(Usuario.email == email))
+
+    def listar_todos(self) -> list[Usuario]:
+        statement = select(Usuario)
+
+        statement = statement.where(Usuario.ativo == True)
+
+        return list(self.db.scalars(statement).all())
