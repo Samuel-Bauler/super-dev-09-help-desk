@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 
 
 from app.core.database import SessionLocal
-from app.schemas.usuario_schema import UsuarioCriar
+from app.schemas.usuario_schema import UsuarioCriar, UsuarioListar, UsuarioEditar
 from app.services.usuario_service import UsuarioService
 
 
@@ -16,6 +16,30 @@ def get_db():
     finally:
         db.close()
 
-@router.post("")
+@router.post(
+    "",
+    summary="Cadastrar Usuario",
+    response_model=UsuarioListar)
 def criar(dado: UsuarioCriar, db=Depends(get_db)):
     return UsuarioService(db).criar(dado)
+
+@router.get(
+        "",
+        summary="Listar usuarios",
+        response_model=list[UsuarioListar],)
+def listar(db=Depends(get_db)):
+    return UsuarioService(db).listar()
+
+@router.put("/{id}")
+def editar(id: int, dado: UsuarioEditar, db=Depends(get_db)):
+    return UsuarioService(db).editar(id, dado)
+
+
+@router.get("/{id}", summary="Consultar usuario filtrando por id", response_model=UsuarioListar)
+def consultar_pr_id(id: int, db=Depends(get_db)):
+    return UsuarioService(db).obter_por_id(id)
+
+
+@router.delete("/{id}", summary="Apagar usuario filtrando por id", response_model=UsuarioListar)
+def apagar(id: int, db=Depends(get_db)):
+    return UsuarioService(db).apagar(id)

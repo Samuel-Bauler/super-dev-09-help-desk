@@ -2,5 +2,8 @@
 
 
 # GEra um salt aleatorio e cria o hash seguro da senha usando bcrypt
+import bcrypt
+
+
 def hash_senha(senha: str) -> str:
     return bcrypt.hashpw(senha.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")

@@ -1,11 +1,10 @@
 from datetime import datetime
 
-from sqlalchemy import Boolean, DateTime, Enum, String
+from sqlalchemy import Boolean, DateTime, String
 
 from app.core.database import Base
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.core.enums import Papel
 from app.core.tempo import agora
 
 

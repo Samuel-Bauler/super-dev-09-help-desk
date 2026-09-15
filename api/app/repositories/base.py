@@ -16,9 +16,9 @@ class RepositorioBase(Generic[T]):
 
     def adicionar(self, objeto: T) -> T:
         """Adicionar à sessão e faz flush para o dado gerar o id(sem fazer commit)"""
-        self.db.add(object)
+        self.db.add(objeto)
         self.db.flush()
-        self.db.refresh(object)
+        self.db.refresh(objeto)
         return objeto
 
     def obter_por_id(self, id: int) -> T | None:
