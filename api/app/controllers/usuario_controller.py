@@ -1,18 +1,11 @@
 from fastapi import APIRouter, Depends
 
-from app.core.database import SessionLocal
+from app.dependencies.database import DbSession
 from app.schemas.usuario_schema import UsuarioCriar, UsuarioEditar, UsuarioListar
 from app.services.usuario_service import UsuarioService
 
 
 router = APIRouter(prefix="/usuarios", tags=["Usuários"])
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.post(
@@ -20,7 +13,7 @@ def get_db():
     summary="Cadastrar usuário",
     response_model=UsuarioListar
 )
-def criar(dado: UsuarioCriar, db=Depends(get_db)):
+def criar(dado: UsuarioCriar, db:DbSession):
     return UsuarioService(db).criar(dado)
 
 
@@ -29,12 +22,12 @@ def criar(dado: UsuarioCriar, db=Depends(get_db)):
     summary="Listar usuários",
     response_model=list[UsuarioListar],
 )
-def listar(db=Depends(get_db)):
+def listar(db: DbSession):
     return UsuarioService(db).listar()
 
 
 @router.put("/{id}")
-def editar(id: int, dado: UsuarioEditar, db=Depends(get_db)):
+def editar(id: int, dado: UsuarioEditar, db: DbSession):
     return UsuarioService(db).editar(id, dado)
 
 
@@ -43,7 +36,7 @@ def editar(id: int, dado: UsuarioEditar, db=Depends(get_db)):
     summary="Consultar usuário filtrando por id",
     response_model=UsuarioListar
 )
-def consultar_por_id(id: int, db=Depends(get_db)):
+def consultar_por_id(id: int, db: DbSession):
     return UsuarioService(db).obter_por_id(id)
 
 
@@ -52,5 +45,5 @@ def consultar_por_id(id: int, db=Depends(get_db)):
     summary="Apagar usuário filtrando por id",
     response_model=UsuarioListar
 )
-def apagar(id: int, db=Depends(get_db)):
+def apagar(id: int, db: DbSession):
     return UsuarioService(db).apagar(id)
