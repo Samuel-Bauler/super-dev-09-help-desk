@@ -17,3 +17,11 @@ class PrioridadeChamado(str, Enum):
     BAIXA = "BAIXA"
     MEDIA = "MEDIA"
     ALTA = "ALTA"
+
+
+class SetorChamado(str, Enum):
+    TI = "TI"
+    RH = "RH"
+    FINANCEIRO = "FINANCEIRO"
+    ADMINISTRATIVO = "ADMINISTRATIVO"
+    MANUTENCAO = "MANUTENCAO"
