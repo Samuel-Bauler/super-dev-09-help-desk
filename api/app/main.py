@@ -12,7 +12,7 @@ registrar_handler(app)
 
 app.include_router(categoria_router)
 app.include_router(usuario_router)
-app.include_router(ticket_routerPermissaoNegadaError)
+app.include_router(ticket_router)
 
 # Executar
 # uvicorn app.main:app --reload
