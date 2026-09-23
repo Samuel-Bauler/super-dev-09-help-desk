@@ -1,1 +1,38 @@
-<p>listar works!</p>
+<h1>Tickets</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Solicitante</th>
+            <th>Titulo</th>
+            <th>Prioridade</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (ticket of tickets(); track ticket.id) {
+            <tr>
+                <td class="link">{{ticket.numeroProtocolo}}</td>
+                <td>TODO</td>
+                <td>{{ticket.titulo}}</td>
+                <td>{{ticket.prioridade}}</td>
+                <td>{{ticket.status}}</td>
+                <td>
+                    @if(ticket.status === "ABERTO"){
+                        <button>Associar</button>
+                    }
+                    @else if(ticket.status === "EM_ANALISE"){
+                        <button>Definir Prioridade</button>
+                        <button>Resolver</button>
+                        <button>Cancelar</button>
+                    } @else {
+                        <span class="sem-acoes">Nenhuma ação disponivel</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -4,6 +4,8 @@ from pydantic import BaseModel, Field, ConfigDict
 
 from app.core.enums import PrioridadeChamado, SetorChamado, StatusChamado
 
+from pydantic.alias_generators import to_camel
+
 
 class TicketCriar(BaseModel):
     id_usuario:int = Field(alias="idUsuario")
@@ -57,3 +59,9 @@ class TicketResposta(BaseModel):
     data_atualizacao: datetime | None
     solicitante_id: int
     atendente_id: int | None
+
+    model_config = ConfigDict(
+        alias_generator=to_camel,
+        populate_by_name=True,
+        from_attributes=True,
+    )
