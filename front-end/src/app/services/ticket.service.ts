@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class TicketService {
   private http = inject(HttpClient);
 
-  private baseUrl = `http://localhost:8001/tickets`
+  private baseUrl = `http://localhost:8000/tickets`
 
   listar(): Observable<TicketResposta[]>{
     return this.http.get<TicketResposta[]>(this.baseUrl);

@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { TicketService } from '../../../services/ticket.service';
 import { TicketResposta } from '../../../models/tickets.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './listar.html',
   styleUrl: './listar.scss',
 })
