@@ -3,7 +3,7 @@
 /tickets/{id}   GET
 
 /tickets        POST
-    RN: Para abrir ticket somente usuário com papel solicitante
+    RN: Para abrir ticket somente usuário com papel solicitantee
     SIstema preenche:
         numero protocolo (gerado automagicamente)
         status => aberto
